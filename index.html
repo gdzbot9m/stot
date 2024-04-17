@@ -35,7 +35,7 @@
     <button onclick="decrement()">Уменьшить</button>
 
     <script>
-        let count = 0;
+        let count = localStorage.getItem('count') || 0;
 
         function updateCounter() {
             document.getElementById('counter').textContent = count;
@@ -43,15 +43,20 @@
 
         function increment() {
             count++;
+            localStorage.setItem('count', count);
             updateCounter();
         }
 
         function decrement() {
             if (count > 0) {
                 count--;
+                localStorage.setItem('count', count);
                 updateCounter();
             }
         }
+
+        
+        window.onload = updateCounter;
     </script>
 </body>
 </html>
